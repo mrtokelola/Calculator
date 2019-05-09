@@ -1,40 +1,71 @@
 <template>
-  <div class="home">
-    <h1>{{ message }}</h1>
-    <button v-on:click="reverseMessage">Reverse Message</button>
-    <ol>
-      <li v-for="todo in todos">
-        {{ todo.text }}
-      </li>
-    </ol>
-    <p>Whatup</p>
-    <p>Number of contributers: {{ numPeople }}</p>
-    <button v-on:click="makeDonation">Add donation</button>
+  <div class="calculator">
+    <div class="display">{{ current || "0" }}</div>
+    <div @click="clear" class="btn">AC</div>
+    <div class="btn">+/-</div>
+    <div class="btn">%</div>
+    <div class="btn operator">÷</div>
+    <div class="btn">7</div>
+    <div class="btn">8</div>
+    <div class="btn">9</div>
+    <div class="btn operator">X</div>
+    <div class="btn">4</div>
+    <div class="btn">5</div>
+    <div class="btn">6</div>
+    <div class="btn operator">-</div>
+    <div class="btn">1</div>
+    <div class="btn">2</div>
+    <div class="btn">3</div>
+    <div class="btn operator">+</div>
+    <div class="btn zero">0</div>
+    <div class="btn">.</div>
+    <div class="btn operator">=</div>
   </div>
 </template>
 
-<style></style>
+<style>
+.calculator {
+  margin: 0 auto;
+  width: 600px;
+  height: 600px;
+  font-size: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(50px, auto);
+}
+
+.display {
+  grid-column: 1 / 5;
+  background-color: #333;
+  color: white;
+}
+
+.zero {
+  grid-column: 1 / 3;
+}
+
+.btn {
+  background-color: #f2f2f2;
+  border: 1px solid #999;
+}
+
+.operator {
+  background-color: orange;
+  color: white;
+}
+</style>
 
 <script>
 export default {
-  data: function() {
+  data() {
     return {
-      message: "Welcome to Vue.js!",
-      todos: [{ text: "Learn JavaScript" }, { text: "Learn Vue" }, { text: "Build something awesome" }],
-      numPeople: 0
+      current: " "
     };
   },
-  created: function() {},
+
   methods: {
-    reverseMessage: function() {
-      this.message = this.message
-        .split("")
-        .reverse()
-        .join("");
-    },
-    makeDonation: function() {
-      console.log("make donation", this.todos);
-      this.numPeople += 1;
+    clear() {
+      this.current = "";
     }
   }
 };
